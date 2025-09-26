@@ -1,11 +1,6 @@
 ﻿using Grocery.Core.Interfaces.Repositories;
 using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Grocery.Core.Services
 {
@@ -31,6 +26,11 @@ namespace Grocery.Core.Services
         {
             List<Client> clients = _clientRepository.GetAll();
             return clients;
+        }
+
+        public Client? Add(string name, string email, string hashedPassword)
+        {
+            return _clientRepository.Add(name, email, hashedPassword);
         }
     }
 }

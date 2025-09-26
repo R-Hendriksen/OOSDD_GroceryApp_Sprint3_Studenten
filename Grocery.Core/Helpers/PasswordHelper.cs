@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Buffers.Text;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Grocery.Core.Helpers
@@ -16,6 +17,8 @@ namespace Grocery.Core.Helpers
         {
             var parts = storedHash.Split('.');
             if (parts.Length != 2) return false;
+            if (!Base64.IsValid(parts[0])) return false;
+            if (!Base64.IsValid(parts[1])) return false;
 
             var salt = Convert.FromBase64String(parts[0]);
             var hash = Convert.FromBase64String(parts[1]);

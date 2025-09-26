@@ -35,7 +35,7 @@ namespace Grocery.Core.Data.Repositories
 
         public Client Add(string name, string email, string hashedPassword)
         {
-            Client client = new(clientList[clientList.Count].Id + 1, name, email, hashedPassword);
+            Client client = new(clientList[clientList.Count - 1].Id + 1, name, email, hashedPassword);
             clientList.Add(client);
             return client;
         }

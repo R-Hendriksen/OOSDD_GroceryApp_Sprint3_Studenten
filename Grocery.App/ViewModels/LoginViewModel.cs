@@ -41,5 +41,21 @@ namespace Grocery.App.ViewModels
                 LoginMessage = "Ongeldige inloggegevens.";
             }
         }
+
+        [RelayCommand]
+        private void Register()
+        {
+            Client? registeredClient = _authService.Register(Email, Password, "");
+            if (registeredClient != null)
+            {
+                LoginMessage = $"Welkom {registeredClient.Name}!";
+                _global.Client = registeredClient;
+                Application.Current.MainPage = new AppShell();
+            }
+            else
+            {
+                LoginMessage = "Ongeldige registreer gegevens.";
+            }
+        }
     }
 }
